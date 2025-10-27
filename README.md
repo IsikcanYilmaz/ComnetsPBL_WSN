@@ -5,11 +5,13 @@ Instructions and codebase(s) for the Comnets3 PBL WSN project. 2025/2026
 - `make BOARD="seeedstudio-xiao-nrf52840" RIOTBASE="$HOME/ComnetsPBL_WSN/RIOT" PORT="/dev/ttyACM0" UF2_SOFTDEV=DROP WERROR=0 flash term`
 - This line should build your project and flash the binary to the board at 
 - Where: 
-- RIOTBASE should point to the RIOT directory we're using (the one in this repo)   
-- PORT is the serial port you want to flash the firmware to
+- `RIOTBASE` should point to the RIOT directory we're using (the one in this repo)   
+- `PORT` is the serial port you want to flash the firmware to
 - If you add the `term` argument it will open serial comms to the board where you can run commands. If you do not have the `flash` argument and only the `term` argument, it will get you the shell without flashing the device.
 
 # Task 1) Get familiar with this workflow
+- Clone this repo: `git clone https://github.com/IsikcanYilmaz/ComnetsPBL_WSN` and go into its directory.
+- Run this command to get the git submodules `git submodule update --recursive --init`. This will download the RIOT OS from a specific checkpoint that is known to work. The latest has some problems with our board.
 - Go to the `gnrc_networking` directory in the root of this repo.
 - Run the `make` command line noted above. Flash all of your boards.
 - If you had added the `term` argument, it should take you to a shell with the device. 
@@ -63,4 +65,8 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 # Task 2) One (or more) transmitter, one receiver
 - TBA
 
+# Experimental: 
+- You will find the shell script `makescript.sh` in the gnrc_networking example directory. It's a script of mine to make the build process a bit easier but I havent tested it in this context. It should work by simply evoking it `bash makescript.sh` and if you supply a (one or more) serial port name it should flash it i.e. `bash makescript.sh /dev/ttyACM0`
 
+# Links of interest:
+- https://doc.riot-os.org/index.html 
