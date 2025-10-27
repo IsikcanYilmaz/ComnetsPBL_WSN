@@ -31,6 +31,7 @@ round-trip min/avg/max = 5.609/7.404/9.103 ms
 ```
 - Once you verify that the devices can talk to one another, run the following on your `Transmitter` node: `udp send <Receiver IP address> 1 aaaa`
 - This will send the payload string `aaaa` to the IP address of the receiver, port number 1, where the UDP server should be listening on. Verify on the other device that our data came through. Should look like this:
+
 Transmitter side:
 ```
 > udp send fe80::aca5:e855:c919:2044 1 asd
