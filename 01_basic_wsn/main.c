@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <random.h>
 
 #include "thread.h"
 #include "shell.h"
