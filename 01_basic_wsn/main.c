@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "thread.h"
 #include "shell.h"
@@ -41,6 +42,7 @@ static WSN_Role_e myRole = WSN_UNSET_ROLE;
 
 static char *addrStr = "2001::1";
 
+// Function for root node to parse incoming packets.
 static void PacketReceptionHandler(gnrc_pktsnip_t *pkt)
 {
   int snips = 0;
@@ -81,7 +83,8 @@ static void PacketReceptionHandler(gnrc_pktsnip_t *pkt)
   }
 }
 
-static void periodicSensingTask(void)
+// Function for sensor node to periodically do sensing and sending tasks
+static void PeriodicSensingTask(void)
 {
   // FILL IN
   //
@@ -89,7 +92,7 @@ static void periodicSensingTask(void)
   //
   //
   char *buf = "TEST DATA";
-  WSNUtil_Send(addrStr, buf);
+  WSNUtil_Send(addrStr, buf, strlen(buf));
 }
 
 void *WSN_NodeThread(void *arg)
@@ -99,7 +102,10 @@ void *WSN_NodeThread(void *arg)
   msg_init_queue(_thread_msg_queue, MSG_QUEUE_SIZE);
   printf("WSN_NodeThread Started. %d\n", myRole);
   do {
+
+    // msg_receive(&msg) is a blocking call. It blocks until there is a message in the queue of this thread
     msg_receive(&msg);
+
     switch(msg.type)
     {
       case GNRC_NETAPI_MSG_TYPE_RCV:
@@ -128,7 +134,7 @@ void *WSN_NodeThread(void *arg)
         {
           printf("WSN_IPC_PERIODIC_OPERATION\n");
           
-          periodicSensingTask();
+          PeriodicSensingTask();
 
           if (running)
           {

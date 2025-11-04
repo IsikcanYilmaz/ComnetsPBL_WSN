@@ -63,7 +63,20 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 ```
 
 # Task 2) One (or more) transmitter, one receiver
-- TBA
+- Go into the folder `01_basic_wsn`. Build the application and flash all of your boards with it.
+- This application introduces a custom shell command `wsn <sensor|root|start|stop|deinit>`. With it you can set one node as the `root` and others as the `sensor` nodes. 
+- The root node will start a UDP listener on its port number 1, and let the other nodes' routing mechanisms know that it is the root node. 
+- The sensor nodes will periodically send the root node a UDP packet.
+- Once you flash all your boards, designate one as the root node and run `wsn root` in its shell. Then, run `wsn sensor` in the shell of the other nodes which will act as your sensor nodes. For now, let's send and receive data and learn how to parse the data.
+- Study the code in `main.c`. In it you will see `WSN_NodeThread`, which is the function that our nodes will spend most of their time in. Running `wsn root` or `wsn sensor` starts a thread with this function, though it is dormant until the thread receives an Inter Process Communication message. We use these messages internally as "event triggers". This point isn't that important right now.
+- Notice the function `PeriodicSensingTask()`. It gets called by the sensor nodes periodically and it is meant to do the sensing and the sending of sensor data to the root.
+- Notice the function `PacketReceptionHandler()`. It gets called by the root node on every packet received. It goes through each layer of the packet (mac/ipv6/udp/payload).
+- Modify `PeriodicSensingTask()` such that it sends a random uint16_t number that is between 0 and 1024.
+- Modify `PacketReceptionHandler()` such that it parses this data, keeps an average of received values, and a tally of how many packets were received.
+- This application will be the basis for the upcoming tasks.
+- You are encouraged to dig into the documentation of RIOT for more info (links noted below). Please write to me if needed also.
+
+# Task 3) TBA
 
 # Experimental: 
 - You will find the shell script `makescript.sh` in the gnrc_networking example directory. It's a script of mine to make the build process a bit easier but I havent tested it in this context. It should work by simply evoking it `bash makescript.sh` and if you supply a (one or more) serial port name it should flash it i.e. `bash makescript.sh /dev/ttyACM0`

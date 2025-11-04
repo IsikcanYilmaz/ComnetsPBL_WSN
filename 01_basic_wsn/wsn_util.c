@@ -31,7 +31,7 @@ void WSNUtil_StartServer(kernel_pid_t pid)
   printf("Success: started UDP server on port %" PRIu16 "\n", port);
 }
 
-void WSNUtil_Send(const char *addr_str, const char *data)
+void WSNUtil_Send(const char *addr_str, const char *data, size_t size)
 {
   netif_t *netif;
   uint16_t port = DEFAULT_PORT;
@@ -46,7 +46,7 @@ void WSNUtil_Send(const char *addr_str, const char *data)
   gnrc_pktsnip_t *payload, *udp, *ip;
   unsigned payload_size;
   /* allocate payload */
-  payload = gnrc_pktbuf_add(NULL, data, strlen(data), GNRC_NETTYPE_UNDEF);
+  payload = gnrc_pktbuf_add(NULL, data, size, GNRC_NETTYPE_UNDEF);
   if (payload == NULL) {
     printf("Error: unable to copy data to packet buffer\n");
     return;
