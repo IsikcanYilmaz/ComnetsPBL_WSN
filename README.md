@@ -67,7 +67,8 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 - This application introduces a custom shell command `wsn <sensor|root|start|stop|deinit>`. With it you can set one node as the `root` and others as the `sensor` nodes. 
 - The root node will start a UDP listener on its port number 1, and let the other nodes' routing mechanisms know that it is the root node. 
 - The sensor nodes will periodically send the root node a UDP packet.
-- Once you flash all your boards, designate one as the root node and run `wsn root` in its shell. Then, run `wsn sensor` in the shell of the other nodes which will act as your sensor nodes. For now, let's send and receive data and learn how to parse the data.
+- Once you flash all your boards, first, designate one as the root node and run `wsn root` in its shell. This will set this node as the `root`, start a UDP listener.
+- Then, run `wsn sensor` in the shell of the other nodes which will act as your sensor nodes. This will have these nodes start periodically sending data to the `root` node. For now, let's send and receive data and learn how to parse the data.
 - Study the code in `main.c`. In it you will see `WSN_NodeThread`, which is the function that our nodes will spend most of their time in. Running `wsn root` or `wsn sensor` starts a thread with this function, though it is dormant until the thread receives an Inter Process Communication message. We use these messages internally as "event triggers". This point isn't that important right now.
 - Notice the function `PeriodicSensingTask()`. It gets called by the sensor nodes periodically and it is meant to do the sensing and the sending of sensor data to the root.
 - Notice the function `PacketReceptionHandler()`. It gets called by the root node on every packet received. It goes through each layer of the packet (mac/ipv6/udp/payload).
