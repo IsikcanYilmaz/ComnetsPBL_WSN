@@ -91,7 +91,9 @@ static void PeriodicSensingTask(void)
   //
   //
   //
-  char *buf = "TEST DATA";
+  char buf[16];
+  memset(buf, 0x00, sizeof(buf));
+  strcpy(buf, "TEST DATA"); 
   WSNUtil_Send(addrStr, buf, strlen(buf));
 }
 
