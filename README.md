@@ -77,7 +77,8 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 - You are encouraged to dig into the documentation of RIOT for more info (links noted below). Please write to me if needed also.
 - You are also encouraged to experiment. Go wild.
 
-# Task 3) TBA
+# Task 3) Sensor hardware
+TBA
 
 # Experimental: 
 - You will find the shell script `makescript.sh` in the gnrc_networking example directory. It's a script of mine to make the build process a bit easier but I havent tested it in this context. It should work by simply evoking it `bash makescript.sh` and if you supply a (one or more) serial port name it should flash it i.e. `bash makescript.sh /dev/ttyACM0`
