@@ -76,6 +76,7 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 - This application will be the basis for the upcoming tasks.
 - You are encouraged to dig into the documentation of RIOT for more info (links noted below). Please write to me if needed also.
 - You are also encouraged to experiment. Go wild.
+- (Note: the `reboot` command reboots the board.)
 
 # Task 3) Sensor hardware
 TBA
