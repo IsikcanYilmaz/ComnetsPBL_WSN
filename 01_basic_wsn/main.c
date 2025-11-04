@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <random.h>
 
 #include "thread.h"
 #include "shell.h"
@@ -66,12 +67,15 @@ static void PacketReceptionHandler(gnrc_pktsnip_t *pkt)
         }
       case GNRC_NETTYPE_UNDEF: // Payload
         {
-          // FILL In
+          // FILL IN
           //
           //
           //
           //
           printf("payload: %s\n", snip->data);
+          //
+          //
+          //
           break;
         }
       default:
@@ -94,6 +98,9 @@ static void PeriodicSensingTask(void)
   char buf[16];
   memset(buf, 0x00, sizeof(buf));
   strcpy(buf, "TEST DATA"); 
+  //
+  //
+  //
   WSNUtil_Send(addrStr, buf, strlen(buf));
 }
 
