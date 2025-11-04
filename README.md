@@ -84,3 +84,4 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 # Links of interest:
 - https://doc.riot-os.org/index.html 
 - https://guide.riot-os.org/
+- The gnrc networking stack: https://doc.riot-os.org/group__net__gnrc.html
