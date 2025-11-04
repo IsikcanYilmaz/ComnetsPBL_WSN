@@ -72,9 +72,10 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 - Notice the function `PeriodicSensingTask()`. It gets called by the sensor nodes periodically and it is meant to do the sensing and the sending of sensor data to the root.
 - Notice the function `PacketReceptionHandler()`. It gets called by the root node on every packet received. It goes through each layer of the packet (mac/ipv6/udp/payload).
 - Modify `PeriodicSensingTask()` such that it sends a random uint16_t number that is between 0 and 1024.
-- Modify `PacketReceptionHandler()` such that it parses this data, keeps an average of received values, and a tally of how many packets were received.
+- Modify `PacketReceptionHandler()` such that it parses this data, keeps an average of received values, and a tally of how many packets were received. Have the root node print all of these.
 - This application will be the basis for the upcoming tasks.
 - You are encouraged to dig into the documentation of RIOT for more info (links noted below). Please write to me if needed also.
+- You are also encouraged to experiment. Go wild.
 
 # Task 3) TBA
 
