@@ -34,7 +34,7 @@ static ztimer_t intervalTimer;
 
 static WSN_Role_e myRole = WSN_UNSET_ROLE;
 
-static char *addrStr = "2001::1";
+static char *rootAddrStr = "2001::1";
 
 // Function for root node to parse incoming packets.
 static void PacketReceptionHandler(gnrc_pktsnip_t *pkt)
@@ -97,7 +97,7 @@ static void PeriodicSensingTask(void)
   //
   //
   //
-  WSNUtil_Send(addrStr, buf, strlen(buf));
+  WSNUtil_Send(rootAddrStr, buf, strlen(buf));
 }
 
 void *WSN_NodeThread(void *arg)
@@ -183,16 +183,16 @@ void WSN_Init(WSN_Role_e role)
     // Set global ipv6 addr
     ipv6_addr_t addr;
     uint16_t flags = GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_VALID;
-    uint8_t prefix_len = ipv6_addr_split_int(addrStr, '/', 64U);
+    uint8_t prefix_len = ipv6_addr_split_int(rootAddrStr, '/', 64U);
     prefix_len = (prefix_len < 1) ? 64U : prefix_len;
-    ipv6_addr_from_str(&addr, addrStr);
+    ipv6_addr_from_str(&addr, rootAddrStr);
     flags |= (prefix_len << 8U);
     if (netif_set_opt(mainIface, NETOPT_IPV6_ADDR, flags, &addr, sizeof(addr)) < 0)
     {
       printf("Error: unable to add IPv6 addr\n");
       return;
     }
-    printf("Successfully added IPv6 address %s\n", addrStr);
+    printf("Successfully added IPv6 address %s\n", rootAddrStr);
 
     // rpl init 7
     if (gnrc_rpl_init(mainIfaceId) < 0)
