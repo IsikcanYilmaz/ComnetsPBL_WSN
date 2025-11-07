@@ -21,12 +21,6 @@
 
 #define MSG_QUEUE_SIZE     (8)
 
-// Function references to shell commands
-extern int _gnrc_netif_config(int argc, char **argv); 
-extern int _gnrc_rpl_init(char *arg);
-extern int _gnrc_rpl_dodag_root(char *arg1, char *arg2);
-extern int _gnrc_rpl_operation(bool leaf, char *arg1);
-
 static msg_t _main_msg_queue[MSG_QUEUE_SIZE];
 static msg_t _thread_msg_queue[MSG_QUEUE_SIZE];
 static char threadStack[THREAD_STACKSIZE_DEFAULT];
@@ -71,7 +65,10 @@ static void PacketReceptionHandler(gnrc_pktsnip_t *pkt)
           //
           //
           //
-          printf("payload: %s\n", snip->data);
+          char buf[32]; 
+          memset(buf, 0x00, 32);
+          memcpy(buf, snip->data, snip->size);
+          printf("payload: \"%s\" , length %d\n", buf, snip->size);
           //
           //
           //
