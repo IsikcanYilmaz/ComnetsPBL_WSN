@@ -80,6 +80,7 @@ dst_l2addr: AE:A5:E8:55:C9:19:20:44
 - (Note: the `reboot` command reboots the board.)
 
 # Task 3) Sensor hardware
+- GY-BMP280 Temperature/Pressure sensor datasheet: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf
 TBA
 
 # Experimental: 
@@ -89,3 +90,4 @@ TBA
 - https://doc.riot-os.org/index.html 
 - https://guide.riot-os.org/
 - The gnrc networking stack: https://doc.riot-os.org/group__net__gnrc.html
+- GY-BMP280 Datasheet https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf
